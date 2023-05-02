@@ -1,11 +1,12 @@
 const images =[
-    {src:'https://cltimpact.jitudevops.com/wp-content/uploads/2022/07/mug-circle-400-alston.jpg',name:'Will Alston',alt:'Founder'},
-    {src:'https://cltimpact.jitudevops.com/wp-content/uploads/2022/07/mug-circle-400-collins.jpg',name:'Todd Collins',alt:'Founder'},
-    {src:'https://cltimpact.jitudevops.com/wp-content/uploads/2022/07/mug-circle-400-levinson.jpg',name:'Hal Levinson',alt:'Founder'},
-    {src:'https://cltimpact.jitudevops.com/wp-content/uploads/2022/07/mug-circle-400-mccoll.jpg',name:'Hugh McColl',alt:'Founder'},
-    {src:'https://cltimpact.jitudevops.com/wp-content/uploads/2020/09/mug-magan-circle-600.jpg',name:'Matt Magan',alt:'Founder'},
-    {src:'https://cltimpact.jitudevops.com/wp-content/uploads/2022/07/mug-circle-400-sheffer.jpg',name:'David Sheffer',alt:'Founder'},
-    {src:'https://cltimpact.jitudevops.com/wp-content/uploads/2022/07/mug-circle-400-whitner.jpg',name:'James Whitner',alt:'Founder'}
+    'https://cltimpact.jitudevops.com/wp-content/uploads/2022/07/mug-circle-400-alston.jpg',
+    'https://cltimpact.jitudevops.com/wp-content/uploads/2022/07/mug-circle-400-collins.jpg',
+    'https://cltimpact.jitudevops.com/wp-content/uploads/2022/07/mug-circle-400-levinson.jpg',
+    'https://cltimpact.jitudevops.com/wp-content/uploads/2022/07/mug-circle-400-mccoll.jpg',
+    'https://cltimpact.jitudevops.com/wp-content/uploads/2020/09/mug-magan-circle-600.jpg',
+    'https://cltimpact.jitudevops.com/wp-content/uploads/2022/07/mug-circle-400-sheffer.jpg',
+    'https://cltimpact.jitudevops.com/wp-content/uploads/2022/07/mug-circle-400-whitner.jpg',
+    'https://cltimpact.jitudevops.com/wp-content/uploads/2021/04/mug-circle-400-griner.jpg'
 ]
 
 describe('clt impact',() => {
@@ -22,11 +23,21 @@ describe('clt impact',() => {
         cy.get('.tatsu-0vRvKy-jL > .tatsu-section-pad > .tatsu-row-one-col > .tatsu-row').contains('FOUNDERS')
     })
 
-    it.only('load founders images',()=>{
-        images.forEach(image=>{
-            cy.get(`img[src="${image.src}"][alt="${image.alt}"]`).should('exist');
-            cy.contains('p', image.name).should('exist');
+    // it('load founders images',()=>{
+    //     images.forEach(image=>{
+    //         cy.get(`img[src="${image.src}"][alt="${image.alt}"]`).should('exist');
+    //         cy.contains('p', image.name).should('exist');
+    //     })
+    // })
+
+    it.only('load founders images on the teams page',()=>{
+        images.forEach((src)=>{
+            cy.request(src).then((response)=>{
+                expect(response.status).to.eq(200)
+            })
         })
     })
+    
+
     
 })

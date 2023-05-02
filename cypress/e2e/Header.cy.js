@@ -15,22 +15,8 @@ describe('CLT Impact', () => {
     })
   })
 
-  it('find navbar links and click them',()=>{
-    cy.visit('https://cltimpact.jitudevops.com')
-    cy.get('#header')
-      .find('a')
-      .should('have.length',7)
-      .each(($link)=>{
-        cy.wrap($link).should('have.attr','href').should('not.be.empty')
-        cy.wrap($link).click()
-        cy.get('#header').should('be.visible') // Interact with element on new page
-      })
-  })
 
-
-
-
-  it.only("test", ()=>{
+  it("find navbar links and click them", ()=>{
     cy.get("#header-wrap")
     links.forEach((link)=>{
       cy.request(`https://cltimpact.jitudevops.com/${link}`).then((res)=>{
