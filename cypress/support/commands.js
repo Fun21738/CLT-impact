@@ -23,3 +23,15 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+
+Cypress.Commands.add("contactForm",(contact)=>{
+    for(let i =0; i < contact.length; i++){
+        if(contact[i].value === ""){
+         cy.get(contact[i].key).focus().blur()
+        } else {
+            cy.get(contact[i].key).type(contact[i].value)
+        }
+    }
+
+})
