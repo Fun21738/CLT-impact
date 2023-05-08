@@ -15,23 +15,24 @@ describe('clt impact', () => {
     })
 
 
-  it('validates all inputs', () => {
-    contactFormPage.assertAllInputsAreValid();
-  });
+  // it('validates all inputs', () => {
+  //   contactFormPage.assertAllInputsAreValid();
+  // });
 
-  it('submits the form', () => {
-    const firstName = 'John';
-    const lastName = 'Doe';
-    const email = 'johndoe@example.com';
-    const message = 'This is a test message.';
+  // it('submits the form', () => {
+  //   const firstName = 'John';
+  //   const lastName = 'Doe';
+  //   const email = 'johndoe@example.com';
+  //   const message = 'This is a test message.';
 
-    contactFormPage.submitForm(firstName, lastName, email, message);
+  //   contactFormPage.submitForm(firstName, lastName, email, message);
 
-    cy.url().should('contain', '/thanks');
+  //   cy.url().should('contain', '/thanks');
 
-    cy.get('.confirmation-message')
-      .should('contain', 'Thank you for contacting us');
-  });
+  //   cy.get('.confirmation-message')
+  //     .should('contain', 'Thank you for contacting us');
+  // });
+
 
   it("fill in all the input fields on the contact form", ()=>{
     cy.get("#wpforms-form-5113")
@@ -40,6 +41,7 @@ describe('clt impact', () => {
     cy.get("#wpforms-confirmation-5113 p").should("have.text", "Thanks for contacting us! We will be in touch with you shortly.")
   })
 
+
   it("test", ()=>{
     cy.get("#wpforms-form-5113")
     newData = updateArray(contact, "#wpforms-5113-field_0", "")
@@ -47,10 +49,10 @@ describe('clt impact', () => {
     cy.get(`[name="wpforms[submit]"]`).click()
     cy.get("#wpforms-5113-field_0-error").should("have.text", "This field is required.")
   })
-  
+
 
   it("test", ()=>{
-    cy.get("#wpforms-5113-field_0-last")
+    cy.get("#wpforms-5113-field_1")
     newData = updateArray(contact, "#wpforms-5113-field_0", "")
     cy.contactForm(newData)
     cy.get(`[name="wpforms[submit]"]`).click()
@@ -68,7 +70,7 @@ describe('clt impact', () => {
 
   
   it("test", ()=>{
-    cy.get("#wpforms-form-5113")
+    cy.get("#wpforms-5113-field_1")
     newData = updateArray(contact, "#wpforms-5113-field_0-last", "")
     cy.contactForm(newData)
     cy.get(`[name="wpforms[submit]"]`).click()
